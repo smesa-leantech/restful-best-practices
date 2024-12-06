@@ -1,5 +1,9 @@
-
 # Guía de Diseño de APIs RESTful
+
+**Autor:** Sergio Mesa
+**Fecha:** 2024-12-06
+**Versión:** 1.0.0
+**Contacto:** smesa[at]lean-tech.io
 
 Esta guía detalla los principios y mejores prácticas para diseñar APIs RESTful siguiendo las directrices de Zalando. Incluye ejemplos claros y justificaciones para cada punto, con el objetivo de garantizar consistencia, mantenibilidad y escalabilidad.
 
