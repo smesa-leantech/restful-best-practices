@@ -116,11 +116,12 @@ const userController = new UserController();
  *               $ref: '#/components/schemas/Error'
  */
 router.get('/', 
-  query('cursor').optional().isString(),
-  query('limit').optional().isInt({ min: 1, max: 100 }),
-  query('fields').optional().isString(),
-  validateRequest,
-  userController.getUsers
+  // Validación de los parámetros de consulta
+  query('cursor').optional().isString(), // El parámetro 'cursor' es opcional y debe ser una cadena
+  query('limit').optional().isInt({ min: 1, max: 100 }), // El parámetro 'limit' es opcional y debe ser un entero entre 1 y 100
+  query('fields').optional().isString(), // El parámetro 'fields' es opcional y debe ser una cadena
+  validateRequest, // Middleware para validar la solicitud
+  userController.getUsers // Controlador que maneja la lógica para obtener los usuarios
 );
 
 /**
@@ -187,12 +188,13 @@ router.get('/',
  *               $ref: '#/components/schemas/Error'
  */
 router.post('/',
-  authenticate,
-  body('user_name').isString().trim().notEmpty(),
-  body('email').isEmail().normalizeEmail(),
-  body('birth_date').isISO8601().toDate(),
-  validateRequest,
-  userController.createUser
+  authenticate, // Middleware para autenticar la solicitud
+  // Validación de los campos del cuerpo de la solicitud
+  body('user_name').isString().trim().notEmpty(), // El campo 'user_name' debe ser una cadena no vacía
+  body('email').isEmail().normalizeEmail(), // El campo 'email' debe ser un correo electrónico válido
+  body('birth_date').isISO8601().toDate(), // El campo 'birth_date' debe ser una fecha en formato ISO8601
+  validateRequest, // Middleware para validar la solicitud
+  userController.createUser // Controlador que maneja la lógica para crear un nuevo usuario
 );
 
 /**
@@ -261,11 +263,12 @@ router.post('/',
  *               $ref: '#/components/schemas/Error'
  */
 router.patch('/:id',
-  authenticate,
-  body('user_name').optional().isString().trim(),
-  body('email').optional().isEmail().normalizeEmail(),
-  validateRequest,
-  userController.updateUser
+  authenticate, // Middleware para autenticar la solicitud
+  // Validación de los campos del cuerpo de la solicitud
+  body('user_name').optional().isString().trim(), // El campo 'user_name' es opcional y debe ser una cadena
+  body('email').optional().isEmail().normalizeEmail(), // El campo 'email' es opcional y debe ser un correo electrónico válido
+  validateRequest, // Middleware para validar la solicitud
+  userController.updateUser // Controlador que maneja la lógica para actualizar un usuario existente
 );
 
 export { router as userRoutes };
